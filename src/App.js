@@ -1,5 +1,6 @@
 import React from 'react';
-import { AppStyled, HeaderStyled } from './AppStyled'
+import { AppStyled, HeaderStyled } from './AppStyled';
+import CountriesGuide from './CountriesGuide';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <HeaderStyled>
         <h1>World travelers guide</h1>
       </HeaderStyled>
+      <CountriesGuide />
     </AppStyled>
   );
 }
