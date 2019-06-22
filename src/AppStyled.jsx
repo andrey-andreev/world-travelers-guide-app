@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const AppStyled = styled.div`
   text-align: center;
-`
+`;
 
 export const HeaderStyled = styled.header`
   background-color: #282c34;
@@ -12,4 +12,4 @@ export const HeaderStyled = styled.header`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-`
+`;
