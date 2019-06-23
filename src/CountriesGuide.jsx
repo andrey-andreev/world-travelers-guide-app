@@ -52,7 +52,10 @@ class CountryGuide extends Component {
   };
 
   setSelectedContinentCode = selectedContinentCode => {
-    this.setState({ selectedContinentCode });
+    this.setState({
+      selectedContinentCode,
+      selectedCountryCode: null
+    });
   };
 
   setSelectedCountryCode = selectedCountryCode => {
