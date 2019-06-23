@@ -1,50 +1,10 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
 import styled from 'styled-components';
+import { GET_CONTINENTS, GET_CONTINENT, GET_COUNTRY } from '../queries';
 import QueryCountries from './QueryCountries';
 import ContinentSelect from './ContinentSelect';
 import CountryList from './CountryList';
 import CountryCard from './CountryCard';
-
-const GET_CONTINENTS = gql`
-  {
-    continents {
-      code
-      name
-    }
-  }
-`;
-
-const GET_CONTINENT = code => gql`
-  {
-    continent (code: "${code}") {
-      name
-      countries {
-        name
-        code
-        emoji
-      }
-    }
-  }
-`;
-
-const GET_COUNTRY = code => gql`
-  {
-    country(code: "${code}") {
-      code
-      name
-      native
-      phone
-      emoji
-      currency
-      languages {
-        code
-        name
-        native
-      }
-    }
-  }
-`;
 
 class CountryGuide extends Component {
   state = {
