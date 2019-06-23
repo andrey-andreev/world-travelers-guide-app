@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { arrayOf, shape, string, func } from 'prop-types';
+import styled from 'styled-components';
 
 class ContinentSelect extends Component {
   state = {
-    continent: 'Select continent'
+    continent: ''
   };
 
   onContinentChange = event => {
@@ -18,8 +19,8 @@ class ContinentSelect extends Component {
     const { continent } = this.state;
     const { continents } = this.props;
     return (
-      <select value={continent} onChange={this.onContinentChange}>
-        <option key="placeholder" value="Select continent" disabled>
+      <SelectStyled value={continent} onChange={this.onContinentChange}>
+        <option key="placeholder" value="">
           Select continent
         </option>
         {continents.map(continentObj => (
@@ -27,7 +28,7 @@ class ContinentSelect extends Component {
             {continentObj.name}
           </option>
         ))}
-      </select>
+      </SelectStyled>
     );
   }
 }
@@ -47,3 +48,9 @@ ContinentSelect.propTypes = {
 };
 
 export default ContinentSelect;
+
+const SelectStyled = styled.select`
+  width: 200px;
+  margin: 0 auto;
+  font-size: 20px;
+`;
