@@ -14,7 +14,7 @@ export const CountryName = styled.div`
 `;
 
 export const CountryFlag = styled.div`
-  font-size: 80px;
+  font-size: 100px;
   padding: 10px;
 `;
 

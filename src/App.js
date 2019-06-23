@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppStyled, HeaderStyled } from './AppStyled';
-import CountriesGuide from './CountriesGuide';
+import CountriesGuide from './components/CountriesGuide';
 
 function App() {
   return (

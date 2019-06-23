@@ -26,19 +26,17 @@ const CountryCard = ({ country: { code, name, native, phone, emoji, currency, la
       <CountryCardText>{currency}</CountryCardText>
     </CountryCardRow>
     {languages.length > 0 && (
-      <div>
-        <CountryCardRow>
-          <CountryCardLabel>languages:</CountryCardLabel>
-          <CountryCardText>
-            {languages.map(lang => {
-              if (lang.name) {
-                return <div key={lang.name}>{`${lang.name} (${lang.native})`}</div>;
-              }
-              return false;
-            })}
-          </CountryCardText>
-        </CountryCardRow>
-      </div>
+      <CountryCardRow>
+        <CountryCardLabel>Languages:</CountryCardLabel>
+        <CountryCardText>
+          {languages.map(lang => {
+            if (lang.name) {
+              return <div key={lang.name}>{`${lang.name} (${lang.native})`}</div>;
+            }
+            return false;
+          })}
+        </CountryCardText>
+      </CountryCardRow>
     )}
   </CountryCardGroup>
 );
