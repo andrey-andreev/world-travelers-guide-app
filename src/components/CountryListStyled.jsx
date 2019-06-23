@@ -13,5 +13,5 @@ export const CountryListItem = styled.a`
   border: 1px solid #ccc;
   padding: 5px;
   border-radius: 3px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
