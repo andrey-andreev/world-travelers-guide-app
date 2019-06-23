@@ -1,8 +1,9 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
 import QueryCountries from './QueryCountries';
 import ContinentSelect from './ContinentSelect';
-import CountrySelect from './CountrySelect';
+import CountryList from './CountryList';
 import CountryCard from './CountryCard';
 
 const GET_CONTINENTS = gql`
@@ -67,7 +68,7 @@ class CountryGuide extends Component {
     const { setSelectedContinentCode, setSelectedCountryCode } = this;
 
     return (
-      <Fragment>
+      <GuideStyled>
         <QueryCountries query={GET_CONTINENTS}>
           {data => (
             <ContinentSelect continents={data.continents} onChange={setSelectedContinentCode} />
@@ -79,9 +80,9 @@ class CountryGuide extends Component {
         {selectedContinentCode && (
           <QueryCountries query={GET_CONTINENT(selectedContinentCode)}>
             {data => (
-              <CountrySelect
+              <CountryList
                 countries={data.continent.countries}
-                onChange={setSelectedCountryCode}
+                onCountrySelect={setSelectedCountryCode}
               />
             )}
           </QueryCountries>
@@ -94,9 +95,15 @@ class CountryGuide extends Component {
             {data => <CountryCard country={data.country} />}
           </QueryCountries>
         )}
-      </Fragment>
+      </GuideStyled>
     );
   }
 }
 
 export default CountryGuide;
+
+const GuideStyled = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 0;
+`;
