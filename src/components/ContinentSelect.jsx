@@ -33,10 +33,6 @@ class ContinentSelect extends Component {
   }
 }
 
-ContinentSelect.defaultProps = {
-  onChange: null
-};
-
 ContinentSelect.propTypes = {
   continents: arrayOf(
     shape({
@@ -44,7 +40,7 @@ ContinentSelect.propTypes = {
       name: string.isRequired
     })
   ).isRequired,
-  onChange: func
+  onChange: func.isRequired
 };
 
 export default ContinentSelect;
