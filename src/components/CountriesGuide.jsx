@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import styled from 'styled-components';
 import { GET_CONTINENTS, GET_CONTINENT, GET_COUNTRY } from '../queries';
 import QueryCountries from './QueryCountries';
 import ContinentSelect from './ContinentSelect';
+import CountrySearch from './CountrySearch';
 import CountryList from './CountryList';
 import CountryCard from './CountryCard';
 
 class CountryGuide extends Component {
   state = {
     selectedContinentCode: null,
-    selectedCountryCode: null
+    selectedCountryCode: null,
+    countrySearchPattern: null
   };
 
   setSelectedContinentCode = selectedContinentCode => {
@@ -23,15 +25,22 @@ class CountryGuide extends Component {
     this.setState({ selectedCountryCode });
   };
 
+  setCountrySearchPattern = event => {
+    this.setState({ countrySearchPattern: event.target.value });
+  };
+
   render() {
-    const { selectedContinentCode, selectedCountryCode } = this.state;
-    const { setSelectedContinentCode, setSelectedCountryCode } = this;
+    const { selectedContinentCode, selectedCountryCode, countrySearchPattern } = this.state;
+    const { setSelectedContinentCode, setSelectedCountryCode, setCountrySearchPattern } = this;
 
     return (
       <GuideStyled>
         <QueryCountries query={GET_CONTINENTS}>
           {data => (
-            <ContinentSelect continents={data.continents} onChange={setSelectedContinentCode} />
+            <Fragment>
+              <ContinentSelect continents={data.continents} onChange={setSelectedContinentCode} />
+              <CountrySearch onKeyPress={setCountrySearchPattern} />
+            </Fragment>
           )}
         </QueryCountries>
 
@@ -39,12 +48,14 @@ class CountryGuide extends Component {
 
         {selectedContinentCode && (
           <QueryCountries query={GET_CONTINENT(selectedContinentCode)}>
-            {data => (
-              <CountryList
-                countries={data.continent.countries}
-                onCountrySelect={setSelectedCountryCode}
-              />
-            )}
+            {data => {
+              const countries = !countrySearchPattern
+                ? data.continent.countries
+                : data.continent.countries.filter(
+                    ({ name }) => name.indexOf(countrySearchPattern) >= 0
+                  );
+              return <CountryList countries={countries} onCountrySelect={setSelectedCountryCode} />;
+            }}
           </QueryCountries>
         )}
 
