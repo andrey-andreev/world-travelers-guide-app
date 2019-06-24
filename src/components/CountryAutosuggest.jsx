@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { arrayOf, shape, string, func } from 'prop-types';
 import Autosuggest from 'react-autosuggest';
-// import styled from 'styled-components';
+import { InputStyled, ContainerStyled, SuggestionStyled } from './CountryAutosuggestStyled';
 
 class CountryAutosuggest extends Component {
   constructor() {
@@ -55,7 +55,13 @@ class CountryAutosuggest extends Component {
   };
 
   renderSuggestion = suggestion => {
-    return <span>{`${suggestion.emoji} ${suggestion.name}`}</span>;
+    return <SuggestionStyled>{`${suggestion.emoji} ${suggestion.name}`}</SuggestionStyled>;
+  };
+
+  renderInputComponent = inputProps => <InputStyled {...inputProps} />;
+
+  renderSuggestionsContainer = ({ containerProps, children }) => {
+    return <ContainerStyled {...containerProps}>{children}</ContainerStyled>;
   };
 
   render() {
@@ -73,6 +79,8 @@ class CountryAutosuggest extends Component {
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={this.getSuggestionValue}
         renderSuggestion={this.renderSuggestion}
+        renderInputComponent={this.renderInputComponent}
+        renderSuggestionsContainer={this.renderSuggestionsContainer}
         inputProps={inputProps}
       />
     );
