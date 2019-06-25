@@ -52,9 +52,9 @@ export class CountryAutosuggestPresenter extends Component {
     return suggestion.name;
   };
 
-  renderSuggestion = suggestion => {
-    return <SuggestionStyled>{`${suggestion.emoji} ${suggestion.name}`}</SuggestionStyled>;
-  };
+  renderSuggestion = suggestion => (
+    <SuggestionStyled>{`${suggestion.emoji} ${suggestion.name}`}</SuggestionStyled>
+  );
 
   renderInputComponent = inputProps => <InputStyled {...inputProps} />;
 
