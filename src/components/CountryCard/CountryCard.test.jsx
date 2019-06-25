@@ -19,7 +19,7 @@ describe('test CountryCard component', () => {
     }
   };
 
-  it('should correct children components', () => {
+  it('should render correct children components', () => {
     const wrapper = shallow(<CountryCard {...props} />);
     const languagesRow = wrapper
       .find(CountryCardRow)
