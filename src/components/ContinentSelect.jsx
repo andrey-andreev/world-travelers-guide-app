@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { arrayOf, shape, string, func } from 'prop-types';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 class ContinentSelect extends Component {
@@ -43,7 +44,11 @@ ContinentSelect.propTypes = {
   onChange: func.isRequired
 };
 
-export default ContinentSelect;
+const mapStateToProps = state => ({
+  continents: state.continents
+});
+
+export default connect(mapStateToProps)(ContinentSelect);
 
 const SelectStyled = styled.select`
   width: 200px;

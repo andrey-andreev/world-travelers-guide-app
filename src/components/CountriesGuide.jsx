@@ -1,40 +1,39 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
+import { func, string } from 'prop-types';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { GET_CONTINENTS, GET_CONTINENT, GET_COUNTRY } from '../queries';
 import QueryCountries from './QueryCountries';
 import ContinentSelect from './ContinentSelect';
 import CountryAutosuggest from './CountryAutosuggest';
 import CountryCard from './CountryCard';
+import { setContinent, setCountry } from '../state/actions/userChoices';
+import { populateContinents } from '../state/actions/continents';
+import { populateCountries } from '../state/actions/countries';
 
 class CountryGuide extends Component {
-  state = {
-    selectedContinentCode: null,
-    selectedCountryCode: null
-  };
-
   setSelectedContinentCode = selectedContinentCode => {
-    this.setState({
-      selectedContinentCode,
-      selectedCountryCode: null
-    });
+    const { dispatch } = this.props;
+    return dispatch(setContinent(selectedContinentCode));
   };
 
   setSelectedCountryCode = selectedCountryCode => {
-    this.setState({ selectedCountryCode });
+    const { dispatch } = this.props;
+    return dispatch(setCountry(selectedCountryCode));
   };
 
   render() {
-    const { selectedContinentCode, selectedCountryCode } = this.state;
+    const { selectedContinentCode, selectedCountryCode } = this.props;
     const { setSelectedContinentCode, setSelectedCountryCode } = this;
+    const { dispatch } = this.props;
 
     return (
       <GuideStyled>
         <QueryCountries query={GET_CONTINENTS}>
-          {data => (
-            <Fragment>
-              <ContinentSelect continents={data.continents} onChange={setSelectedContinentCode} />
-            </Fragment>
-          )}
+          {data => {
+            dispatch(populateContinents(data.continents));
+            return <ContinentSelect onChange={setSelectedContinentCode} />;
+          }}
         </QueryCountries>
 
         <br />
@@ -42,6 +41,7 @@ class CountryGuide extends Component {
         {selectedContinentCode && (
           <QueryCountries query={GET_CONTINENT(selectedContinentCode)}>
             {data => {
+              dispatch(populateCountries(data.continent.countries));
               return (
                 <CountryAutosuggest
                   countries={data.continent.countries}
@@ -64,7 +64,23 @@ class CountryGuide extends Component {
   }
 }
 
-export default CountryGuide;
+CountryGuide.defaultProps = {
+  selectedContinentCode: null,
+  selectedCountryCode: null
+};
+
+CountryGuide.propTypes = {
+  selectedContinentCode: string,
+  selectedCountryCode: string,
+  dispatch: func.isRequired
+};
+
+const mapStateToProps = state => ({
+  selectedContinentCode: state.userChoices.continent,
+  selectedCountryCode: state.userChoices.country
+});
+
+export default connect(mapStateToProps)(CountryGuide);
 
 const GuideStyled = styled.div`
   max-width: 900px;
