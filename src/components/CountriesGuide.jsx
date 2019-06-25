@@ -6,7 +6,7 @@ import { GET_CONTINENTS, GET_CONTINENT, GET_COUNTRY } from '../queries';
 import QueryCountries from './QueryCountries';
 import ContinentSelect from './ContinentSelect';
 import CountryAutosuggest from './CountryAutosuggest';
-import CountryCard from './CountryCard';
+import CountryCard from './CountryCard/CountryCard';
 import { populateContinents } from '../state/actions/continents';
 import { populateCountries } from '../state/actions/countries';
 
