@@ -4,8 +4,18 @@ import Autosuggest from 'react-autosuggest';
 import { CountryAutosuggestPresenter } from './CountryAutosuggest';
 
 describe('test CountryAutosuggest component', () => {
+  const props = {
+    chooseCountry: jest.fn(),
+    countries: [
+      {
+        code: 'BG',
+        name: 'Bulgaria',
+        emoji: '🇧🇬'
+      }
+    ]
+  };
   it('should render `Autosuggest` component', () => {
-    const wrapper = shallow(<CountryAutosuggestPresenter />);
+    const wrapper = shallow(<CountryAutosuggestPresenter {...props} />);
     expect(wrapper).toContainMatchingElement(Autosuggest);
   });
   // TODO: test `onChange` method
