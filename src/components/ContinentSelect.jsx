@@ -2,23 +2,16 @@ import React, { Component } from 'react';
 import { arrayOf, shape, string, func } from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { setContinent } from '../state/actions/userChoices';
 
 class ContinentSelect extends Component {
-  state = {
-    continent: ''
-  };
-
   onContinentChange = event => {
-    const { onChange } = this.props;
-    this.setState({ continent: event.target.value });
-    if (onChange) {
-      onChange(event.target.value);
-    }
+    const { chooseContinent } = this.props;
+    chooseContinent(event.target.value);
   };
 
   render() {
-    const { continent } = this.state;
-    const { continents } = this.props;
+    const { continent, continents } = this.props;
     return (
       <SelectStyled value={continent} onChange={this.onContinentChange}>
         <option key="placeholder" value="">
@@ -34,21 +27,30 @@ class ContinentSelect extends Component {
   }
 }
 
+ContinentSelect.defaultProps = {
+  continent: ''
+};
+
 ContinentSelect.propTypes = {
+  continent: string,
   continents: arrayOf(
     shape({
       code: string.isRequired,
       name: string.isRequired
     })
   ).isRequired,
-  onChange: func.isRequired
+  chooseContinent: func.isRequired
 };
 
 const mapStateToProps = state => ({
+  continent: state.userChoices.continent,
   continents: state.continents
 });
 
-export default connect(mapStateToProps)(ContinentSelect);
+export default connect(
+  mapStateToProps,
+  { chooseContinent: setContinent }
+)(ContinentSelect);
 
 const SelectStyled = styled.select`
   width: 200px;

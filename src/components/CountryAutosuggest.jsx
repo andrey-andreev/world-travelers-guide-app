@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { arrayOf, shape, string, func } from 'prop-types';
+import { connect } from 'react-redux';
 import Autosuggest from 'react-autosuggest';
 import { InputStyled, ContainerStyled, SuggestionStyled } from './CountryAutosuggestStyled';
+import { setCountry } from '../state/actions/userChoices';
 
 class CountryAutosuggest extends Component {
   constructor() {
@@ -49,8 +51,8 @@ class CountryAutosuggest extends Component {
   };
 
   getSuggestionValue = suggestion => {
-    const { onCountrySelect } = this.props;
-    onCountrySelect(suggestion.code);
+    const { chooseCountry } = this.props;
+    chooseCountry(suggestion.code);
     return suggestion.name;
   };
 
@@ -88,7 +90,7 @@ class CountryAutosuggest extends Component {
 }
 
 CountryAutosuggest.propTypes = {
-  onCountrySelect: func.isRequired,
+  chooseCountry: func.isRequired,
   countries: arrayOf(
     shape({
       code: string.isRequired,
@@ -98,4 +100,9 @@ CountryAutosuggest.propTypes = {
   ).isRequired
 };
 
-export default CountryAutosuggest;
+export default connect(
+  null,
+  {
+    chooseCountry: setCountry
+  }
+)(CountryAutosuggest);
