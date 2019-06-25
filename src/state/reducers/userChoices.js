@@ -1,8 +1,8 @@
 import { actionTypes } from '../actions/userChoices';
 
 const initialState = {
-  selectedContinentCode: null,
-  selectedCountryCode: null
+  continent: '',
+  country: ''
 };
 
 const userChoices = (state = initialState, action) => {
@@ -10,7 +10,7 @@ const userChoices = (state = initialState, action) => {
     case actionTypes.SET_CONTINENT: {
       return {
         continent: action.continent,
-        country: null
+        country: ''
       };
     }
     case actionTypes.SET_COUNTRY: {
