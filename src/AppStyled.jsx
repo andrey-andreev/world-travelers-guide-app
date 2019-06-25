@@ -13,3 +13,9 @@ export const HeaderStyled = styled.header`
   font-size: calc(10px + 1.5vmin);
   color: white;
 `;
+
+export const ContainerStyled = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 0;
+`;

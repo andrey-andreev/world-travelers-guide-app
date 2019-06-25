@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CountryAutosuggestContainer } from './CountryAutosuggestContainer';
+import { CountryAutosuggestContainerUnconnected } from './CountryAutosuggestContainer';
 import QueryCountries from '../QueryCountries/QueryCountries';
 
 describe('test `CountryAutosuggestContainer` component', () => {
@@ -10,13 +10,13 @@ describe('test `CountryAutosuggestContainer` component', () => {
   };
 
   it('with `selectedContinentCode !== null` should render `QueryCountries` component', () => {
-    const wrapper = shallow(<CountryAutosuggestContainer {...props} />);
+    const wrapper = shallow(<CountryAutosuggestContainerUnconnected {...props} />);
     expect(wrapper).toContainMatchingElement(QueryCountries);
   });
 
   it('with `selectedContinentCode === null` should render `null`', () => {
     const wrapper = shallow(
-      <CountryAutosuggestContainer {...props} selectedContinentCode={null} />
+      <CountryAutosuggestContainerUnconnected {...props} selectedContinentCode={null} />
     );
     expect(wrapper.type()).toEqual(null);
   });

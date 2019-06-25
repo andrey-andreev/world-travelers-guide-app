@@ -1,8 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { AppStyled, HeaderStyled } from './AppStyled';
-import CountriesGuide from './components/CountriesGuide/CountriesGuide';
 import store from './state/store';
+import { AppStyled, HeaderStyled, ContainerStyled } from './AppStyled';
+import ContinentSelectContainer from './components/ContinentSelect/ContinentSelectContainer';
+import CountryAutosuggestContainer from './components/CountryAutosuggest/CountryAutosuggestContainer';
+import CountryCardContainer from './components/CountryCard/CountryCardContainer';
 
 function App() {
   return (
@@ -11,7 +13,11 @@ function App() {
         <HeaderStyled>
           <h1>World travelers guide</h1>
         </HeaderStyled>
-        <CountriesGuide />
+        <ContainerStyled>
+          <ContinentSelectContainer />
+          <CountryAutosuggestContainer />
+          <CountryCardContainer />
+        </ContainerStyled>
       </AppStyled>
     </Provider>
   );

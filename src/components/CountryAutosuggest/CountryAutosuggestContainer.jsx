@@ -6,7 +6,7 @@ import QueryCountries from '../QueryCountries/QueryCountries';
 import CountryAutosuggest from './CountryAutosuggest';
 import { populateCountries } from '../../state/actions/countries';
 
-export const CountryAutosuggestContainer = ({ selectedContinentCode, setCountries }) => {
+export const CountryAutosuggestContainerUnconnected = ({ selectedContinentCode, setCountries }) => {
   if (!selectedContinentCode) {
     return null;
   }
@@ -20,11 +20,11 @@ export const CountryAutosuggestContainer = ({ selectedContinentCode, setCountrie
   );
 };
 
-CountryAutosuggestContainer.defaultProps = {
+CountryAutosuggestContainerUnconnected.defaultProps = {
   selectedContinentCode: null
 };
 
-CountryAutosuggestContainer.propTypes = {
+CountryAutosuggestContainerUnconnected.propTypes = {
   selectedContinentCode: string,
   setCountries: func.isRequired
 };
@@ -36,4 +36,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { setCountries: populateCountries }
-)(CountryAutosuggestContainer);
+)(CountryAutosuggestContainerUnconnected);

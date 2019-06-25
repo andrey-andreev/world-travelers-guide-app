@@ -5,7 +5,7 @@ import CountryCard from './CountryCard';
 import { GET_COUNTRY } from '../../queries';
 import QueryCountries from '../QueryCountries/QueryCountries';
 
-export const CountryCardContainer = ({ selectedCountryCode }) => {
+export const CountryCardContainerUnconnected = ({ selectedCountryCode }) => {
   if (!selectedCountryCode) {
     return null;
   }
@@ -16,11 +16,11 @@ export const CountryCardContainer = ({ selectedCountryCode }) => {
   );
 };
 
-CountryCardContainer.defaultProps = {
+CountryCardContainerUnconnected.defaultProps = {
   selectedCountryCode: null
 };
 
-CountryCardContainer.propTypes = {
+CountryCardContainerUnconnected.propTypes = {
   selectedCountryCode: string
 };
 
@@ -28,4 +28,4 @@ const mapStateToProps = state => ({
   selectedCountryCode: state.userChoices.country
 });
 
-export default connect(mapStateToProps)(CountryCardContainer);
+export default connect(mapStateToProps)(CountryCardContainerUnconnected);
