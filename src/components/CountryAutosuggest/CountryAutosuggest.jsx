@@ -6,14 +6,10 @@ import { InputStyled, ContainerStyled, SuggestionStyled } from './CountryAutosug
 import { setCountry } from '../../state/actions/userChoices';
 
 export class CountryAutosuggestPresenter extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: '',
-      suggestions: []
-    };
-  }
+  state = {
+    value: '',
+    suggestions: []
+  };
 
   onChange = (event, { newValue }) => {
     this.setState({
