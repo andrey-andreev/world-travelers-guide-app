@@ -5,9 +5,9 @@ import Autosuggest from 'react-autosuggest';
 import { InputStyled, ContainerStyled, SuggestionStyled } from './CountryAutosuggestStyled';
 import { setCountry } from '../../state/actions/userChoices';
 
-class CountryAutosuggest extends Component {
-  constructor() {
-    super();
+export class CountryAutosuggestPresenter extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
       value: '',
@@ -89,7 +89,7 @@ class CountryAutosuggest extends Component {
   }
 }
 
-CountryAutosuggest.propTypes = {
+CountryAutosuggestPresenter.propTypes = {
   chooseCountry: func.isRequired,
   countries: arrayOf(
     shape({
@@ -105,4 +105,4 @@ export default connect(
   {
     chooseCountry: setCountry
   }
-)(CountryAutosuggest);
+)(CountryAutosuggestPresenter);
