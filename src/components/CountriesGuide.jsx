@@ -10,11 +10,16 @@ import CountryCard from './CountryCard';
 import { populateContinents } from '../state/actions/continents';
 import { populateCountries } from '../state/actions/countries';
 
-const CountryGuide = ({ dispatch, selectedContinentCode, selectedCountryCode }) => (
+const CountryGuide = ({
+  setContinents,
+  setCountries,
+  selectedContinentCode,
+  selectedCountryCode
+}) => (
   <GuideStyled>
     <QueryCountries query={GET_CONTINENTS}>
       {data => {
-        dispatch(populateContinents(data.continents));
+        setContinents(data.continents);
         return <ContinentSelect />;
       }}
     </QueryCountries>
@@ -24,7 +29,7 @@ const CountryGuide = ({ dispatch, selectedContinentCode, selectedCountryCode }) 
     {selectedContinentCode && (
       <QueryCountries query={GET_CONTINENT(selectedContinentCode)}>
         {data => {
-          dispatch(populateCountries(data.continent.countries));
+          setCountries(data.continent.countries);
           return <CountryAutosuggest countries={data.continent.countries} />;
         }}
       </QueryCountries>
@@ -48,7 +53,8 @@ CountryGuide.defaultProps = {
 CountryGuide.propTypes = {
   selectedContinentCode: string,
   selectedCountryCode: string,
-  dispatch: func.isRequired
+  setContinents: func.isRequired,
+  setCountries: func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -56,7 +62,13 @@ const mapStateToProps = state => ({
   selectedCountryCode: state.userChoices.country
 });
 
-export default connect(mapStateToProps)(CountryGuide);
+export default connect(
+  mapStateToProps,
+  {
+    setContinents: populateContinents,
+    setCountries: populateCountries
+  }
+)(CountryGuide);
 
 const GuideStyled = styled.div`
   max-width: 900px;
