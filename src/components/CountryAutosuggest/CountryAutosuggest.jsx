@@ -3,7 +3,7 @@ import { arrayOf, shape, string, func } from 'prop-types';
 import { connect } from 'react-redux';
 import Autosuggest from 'react-autosuggest';
 import { InputStyled, ContainerStyled, SuggestionStyled } from './CountryAutosuggestStyled';
-import { setCountry } from '../state/actions/userChoices';
+import { setCountry } from '../../state/actions/userChoices';
 
 class CountryAutosuggest extends Component {
   constructor() {

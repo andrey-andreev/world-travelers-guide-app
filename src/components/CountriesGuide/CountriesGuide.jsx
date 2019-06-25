@@ -2,15 +2,15 @@ import React from 'react';
 import { func, string } from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { GET_CONTINENTS, GET_CONTINENT, GET_COUNTRY } from '../queries';
-import QueryCountries from './QueryCountries';
-import ContinentSelect from './ContinentSelect';
-import CountryAutosuggest from './CountryAutosuggest';
-import CountryCard from './CountryCard/CountryCard';
-import { populateContinents } from '../state/actions/continents';
-import { populateCountries } from '../state/actions/countries';
+import { GET_CONTINENTS, GET_CONTINENT, GET_COUNTRY } from '../../queries';
+import QueryCountries from '../QueryCountries/QueryCountries';
+import ContinentSelect from '../ContinentSelect/ContinentSelect';
+import CountryAutosuggest from '../CountryAutosuggest/CountryAutosuggest';
+import CountryCard from '../CountryCard/CountryCard';
+import { populateContinents } from '../../state/actions/continents';
+import { populateCountries } from '../../state/actions/countries';
 
-const CountryGuide = ({
+export const CountryGuidePresenter = ({
   setContinents,
   setCountries,
   selectedContinentCode,
@@ -41,12 +41,12 @@ const CountryGuide = ({
   </GuideStyled>
 );
 
-CountryGuide.defaultProps = {
+CountryGuidePresenter.defaultProps = {
   selectedContinentCode: null,
   selectedCountryCode: null
 };
 
-CountryGuide.propTypes = {
+CountryGuidePresenter.propTypes = {
   selectedContinentCode: string,
   selectedCountryCode: string,
   setContinents: func.isRequired,
@@ -64,9 +64,9 @@ export default connect(
     setContinents: populateContinents,
     setCountries: populateCountries
   }
-)(CountryGuide);
+)(CountryGuidePresenter);
 
-const GuideStyled = styled.div`
+export const GuideStyled = styled.div`
   max-width: 900px;
   margin: 0 auto;
   padding: 30px 0;

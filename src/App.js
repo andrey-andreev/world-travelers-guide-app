@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { AppStyled, HeaderStyled } from './AppStyled';
-import CountriesGuide from './components/CountriesGuide';
+import CountriesGuide from './components/CountriesGuide/CountriesGuide';
 import store from './state/store';
 
 function App() {
