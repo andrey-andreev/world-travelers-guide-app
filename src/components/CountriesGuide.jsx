@@ -24,8 +24,6 @@ const CountryGuide = ({
       }}
     </QueryCountries>
 
-    <br />
-
     {selectedContinentCode && (
       <QueryCountries query={GET_CONTINENT(selectedContinentCode)}>
         {data => {
@@ -34,8 +32,6 @@ const CountryGuide = ({
         }}
       </QueryCountries>
     )}
-
-    <br />
 
     {selectedCountryCode && (
       <QueryCountries query={GET_COUNTRY(selectedCountryCode)}>
