@@ -53,7 +53,8 @@ export default connect(
 )(ContinentSelectPresenter);
 
 export const SelectStyled = styled.select`
-  width: 200px;
+  width: 240px;
   margin: 0 auto;
   font-size: 20px;
+  margin-bottom: 20px;
 `;

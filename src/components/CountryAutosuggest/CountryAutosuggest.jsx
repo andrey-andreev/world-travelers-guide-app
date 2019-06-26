@@ -80,6 +80,7 @@ export class CountryAutosuggestPresenter extends Component {
         renderInputComponent={this.renderInputComponent}
         renderSuggestionsContainer={this.renderSuggestionsContainer}
         inputProps={inputProps}
+        focusInputOnSuggestionClick={false}
       />
     );
   }
